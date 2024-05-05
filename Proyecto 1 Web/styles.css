@@ -1,0 +1,71 @@
+/*
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: cornflowerblue;
+}
+
+.div-title {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.div-title h1 {
+    font-weight: 300;
+}
+
+.content {
+    width: 100%;
+    height: calc(100vh - 100px);
+    display: flex;
+    justify-content: center;
+}
+
+/*ESTILOS DEL FORMUARIO*/
+/*
+.content .div-formulario{
+    width: 30%;
+    height: 600px;
+    margin: 15px 15px;
+    background-color: rgb(135, 132, 132);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 10px 10px rgb(0, 0, 0, 0.3)
+}
+/*
+.content .div-formulario h2{
+    margin-top: 10px;
+    font-weight: 300;
+    font-size: 2em;
+    color: whitesmoke;
+}
+
+.content .div-formulario form{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.content .div-formulario form input, 
+.content .div-formulario form button,
+.content .div-formulario form select
+{
+    width: 60%;
+    padding: 10px 10px;
+    margin: 10px 10px;
+}
+
+

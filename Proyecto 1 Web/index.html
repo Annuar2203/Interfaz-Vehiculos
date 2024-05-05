@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Automóviles</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <div class="div-title">
+        <h1>CRUD de Automóviles </h1>
+    </div>
+
+    <div class="content">
+        <div class="div-formulario"> <!--Formulario-->
+            <h2>Formulario</h2>
+            <form action="#" id="form" onsubmit="return Validar()">
+
+                <label for="placa">Placa del Vehículo</label>
+                <input type="text" id="placa" placeholder="Ingresa la placa del vehículo"><br>
+
+                <label for="year">Año del Vehículo:</label>
+                <input type="text" id="year" placeholder="Ingresa el año del vehiculo"><br>
+
+                <!--Listado de marcas-->
+                <label for="car-brand">Marca del Vehículo:</label>
+                <select name="car-brand" id="car-brand" onchange="changeModel()">
+                    <option value="">Selecciona una marca</option>
+                    <option value="ford">Ford</option>
+                    <option value="chevrolet">Chevrolet</option>
+                    <option value="toyota">Toyota</option>
+                    <option value="honda">Honda</option>
+                    <option value="volkswagen">Volkswagen</option>
+                </select><br>
+
+                <!--Listado de modelos-->
+                <label for="car-model">Modelo del Vehículo:</label>
+                <select name="car-model" id="car-model">
+                    <option value="">Selecciona una marca primero</option>
+                </select><br>
+
+                <label for="color">Color del Vehículo:</label>
+                <input type="color" name="color" id="color" value="#000000"><br>
+
+                <label for="name">Nombre:</label>
+                <input type="text" id="name" placeholder="Ingresa tu nombre"><br>
+
+                <label for="lastname">Apellido:</label>
+                <input type="text" id="lastname" placeholder="Ingresa tu apellido"><br>
+
+                <label for="id">Cédula:</label>
+                <input type="text" id="id" placeholder="Ingresa tu cedula"><br>
+
+                <label for="phone">Teléfono:</label>
+                <input type="text" id="phone" placeholder="Ingresa tu teléfono"><br>
+
+                <label for="direction">Dirección:</label>
+                <input type="text" id="direction" placeholder="Ingresa tu dirección"><br>
+
+                <label for="property-name">Nombre del Propietario:</label>
+                <input type="text" id="property-name" placeholder="Ingresa el nombre del dueño"><br>
+
+                <label for="property-lastname">Apellido del Propietario:</label>
+                <input type="text" id="property-lastname" placeholder="Ingresa el apellido del dueño"><br>
+
+                <!--Imagen-->
+                <label for="image-preview">Imagen del Vehiculo</label><br>
+                <img id="image-preview" width="180" height="250"
+                    src="https://e7.pngegg.com/pngimages/623/754/png-clipart-sports-car-automotive-design-luxury-vehicle-cartoon-luxury-car-cartoon-character-compact-car.png"><br>
+
+                <button type="submit" id="agregate">Agregar</button>
+                <button type="reset" id="reset">Limpiar</button>
+            </form>
+        </div>
+
+        <div>
+            <h2>Listado de Empleados</h2>
+            <div class="div-employes">
+
+            </div>
+        </div>
+
+    </div>
+    <script src="main.js"></script>
+</body>
+
+</html>
