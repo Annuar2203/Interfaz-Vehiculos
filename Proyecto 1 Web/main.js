@@ -1,34 +1,34 @@
-function changeModel(){ //Funcion que trata los selectores de las marcas y sus modelos
+function changeModel() { //Funcion que trata los selectores de las marcas y sus modelos
     var models = document.getElementById("car-model");
 
     //Se eliminan modelos anteriores 
     models.innerHTML = "";
 
     //Agregar nuevos modelos
-    var agregateModel = function(model){
+    var agregateModel = function (model) {
         models.insertAdjacentHTML('beforeend', `<option value="${model}">${model}</option>`);
     };
 
     var brandSelect = document.getElementById("car-brand").value;
 
-    switch(brandSelect){
+    switch (brandSelect) {
         case "ford":
-            ["Fiesta", "Focus", "Mustang"].forEach(agregateModel);
+            ["Selecciona un modelo","Fiesta", "Focus", "Mustang"].forEach(agregateModel);
             break;
         case "chevrolet":
-            ["Silverado", "Cruze", "Camaro"].forEach(agregateModel);
+            ["Selecciona un modelo","Silverado", "Cruze", "Camaro"].forEach(agregateModel);
             break;
         case "toyota":
-            ["Corolla", "Camry", "RAV4"].forEach(agregateModel);
+            ["Selecciona un modelo","Corolla", "Camry", "RAV4"].forEach(agregateModel);
             break;
         case "honda":
-            ["Civic", "Accord", "CR-V"].forEach(agregateModel);
-            break;    
+            ["Selecciona un modelo","Civic", "Accord", "CR-V"].forEach(agregateModel);
+            break;
         case "volkswagen":
-            ["Golf", "Jetta", "Tiguan"].forEach(agregateModel); 
+            ["Selecciona un modelo","Golf", "Jetta", "Tiguan"].forEach(agregateModel);
             break;
         default:
-            models.insertAdjacentHTML('beforeend', '<option value="">Selecciona una marca primero</option>');                  
+            models.insertAdjacentHTML('beforeend', '<option value="">Selecciona una marca primero</option>');
     }
 }
 
@@ -82,7 +82,7 @@ function updateImage() { //Previsualizar la imagen del formulario
             }
             break;
         case "toyota":
-            switch (model){
+            switch (model) {
                 case "Corolla":
                     imagePreview.src = "https://quatrorodas.abril.com.br/wp-content/uploads/2019/03/toyota-corolla-2-e1553106218663.jpg?resize=165";
                     break;
@@ -97,7 +97,7 @@ function updateImage() { //Previsualizar la imagen del formulario
             }
             break;
         case "honda":
-            switch (model){
+            switch (model) {
                 case "Civic":
                     imagePreview.src = "https://th.bing.com/th/id/R.df0384434b0f3c62dc3a19dbd9bbc61e?rik=tGmLJ8avZyD6eA&pid=ImgRaw&r=0";
                     break;
@@ -112,7 +112,7 @@ function updateImage() { //Previsualizar la imagen del formulario
             }
             break;
         case "volkswagen":
-            switch (model){
+            switch (model) {
                 case "Golf":
                     imagePreview.src = "https://th.bing.com/th/id/R.e9ea6a605fd058f7b19004b16b8a3472?rik=5AOPNaskTrlrCg&riu=http%3a%2f%2fwww.sembang-auto.com%2fwp-content%2fuploads%2f2012%2f09%2fVW-Golf-1.jpg&ehk=BrIX8fXAcvr4IjYYB64xACS%2fNdD5pXOspewkt%2fLup0I%3d&risl=&pid=ImgRaw&r=0";
                     break;
@@ -125,16 +125,18 @@ function updateImage() { //Previsualizar la imagen del formulario
                 default:
                     imagePreview.src = "https://e7.pngegg.com/pngimages/623/754/png-clipart-sports-car-automotive-design-luxury-vehicle-cartoon-luxury-car-cartoon-character-compact-car.png"; // Imagen no disponible
             }
-            break;                                     
+            break;
         default:
             imagePreview.src = "https://e7.pngegg.com/pngimages/623/754/png-clipart-sports-car-automotive-design-luxury-vehicle-cartoon-luxury-car-cartoon-character-compact-car.png"; // Imagen no disponible
-    }    
+    }
 }
+
+//-----------------------------------------------------------------------------//
 
 // AGREGAR
 
 let listRegistro = [];
-const objCar = {
+const objClient = {
     index: '',
     placa: '',
     year: '',
@@ -151,7 +153,7 @@ const objCar = {
     image: '',
 }
 
-let edit = false; //deteca cuando agrega o actualiza la lista
+let editando = false; //deteca cuando agrega o actualiza la lista
 
 const formulario = document.querySelector('#form'); //id etiquetas
 const placa = document.querySelector('#placa');
@@ -167,49 +169,203 @@ const direccion = document.querySelector('#direction');
 const nombre_prop = document.querySelector('#property-name');
 const apellido_prop = document.querySelector('#property-lastname');
 const imagen = document.querySelector('#image-preview');
-const btnAgregate = document.querySelector('#agregate'); 
+const btnAgregate = document.querySelector('#agregate');
 
-formulario.addEventListener('submit', Validar);
+formulario.addEventListener('submit', validarForm);
 
-function validarForm(e) {
+function validarForm(e) { //AGREGAR ELIMINAR O EDITAR
     e.preventDefault();
 
     //VALIDACIONES
-    if(placa.value === ''){
+    if (placa.value === '') {
         alert('Todos los campos son obligatorios');
         return;
     }
 
     //EDITAR
-    if(editando){
-        //editEmpleado();
+    if (editando) {
+        editClient();
         editando = false;
-    //AGREGAR    
-    }else{
-        objCar.index = Date.now();
-        objCar.placa = placa.value;
-        objCar.year = year.value;
-        objCar.marca = placa.value;
-        objCar.modelo = modelo.value;
-        objCar.color = color.value;
-        objCar.nombre = nombre.value;
-        objCar.apellido = apellido.value;
-        objCar.id = cedula.value;
-        objCar.telf = telefono.value;
-        objCar.direccion = direccion.value;
-        objCar.prop_nombre = nombre_prop.value;
-        objCar.prop_apellido = apellido_prop.value;
-        objCar.image = imagen.value;
 
-        agregateCar();
+    //AGREGAR    
+    } else {
+        objClient.index = Date.now();
+        objClient.placa = placa.value;
+        objClient.year = year.value;
+        objClient.marca = placa.value;
+        objClient.modelo = modelo.value;
+        objClient.color = color.value;
+        objClient.nombre = nombre.value;
+        objClient.apellido = apellido.value;
+        objClient.id = cedula.value;
+        objClient.telf = telefono.value;
+        objClient.direccion = direccion.value;
+        objClient.prop_nombre = nombre_prop.value;
+        objClient.prop_apellido = apellido_prop.value;
+        objClient.image = imagen.value;
+
+        agregateClient();
     }
 }
 
-function agregateCar(){
-    listRegistro.push({...objCar});
-    mostrarCar();
+function agregateClient() {
+
+    listRegistro.push({ ...objClient }); //metodo PUSH para agregar un cliente
+    mostrarClient(); //Mostrar lista actualizada
+    //LIMPIAR CAMPOS
+    placa.value = '';
+    year.value = '';
+    marca.value = '';
+    modelo.value = '';
+    color.value = "#000000";
+    nombre.value = '';
+    apellido.value = '';
+    cedula.value = '';
+    telefono.value = '';
+    direccion.value = '';
+    nombre_prop.value = '';
+    apellido_prop.value = '';
+    imagen.src = 'https://e7.pngegg.com/pngimages/623/754/png-clipart-sports-car-automotive-design-luxury-vehicle-cartoon-luxury-car-cartoon-character-compact-car.png';
+    cleanObject(); //limpiar formulario
 }
 
-function mostrarCar(){
-    
+function cleanObject() {
+    objClient.index = '';
+    objClient.placa = '';
+    objClient.year = '';
+    objClient.marca = '';
+    objClient.modelo = '';
+    objClient.color = '';
+    objClient.nombre = '';
+    objClient.apellido = '';
+    objClient.id = '';
+    objClient.telf = '';
+    objClient.direccion = '';
+    objClient.prop_nombre = '';
+    objClient.prop_apellido = '';
+    objClient.image = '';
+}
+
+
+function mostrarClient() {
+
+    cleanHTML();
+
+    const divClientes = document.querySelector('.div-clientes'); //parte donde se agregan los elementos html
+    listRegistro.forEach(client => {
+        const { index, nombre, apellido, id, year, placa, image, marca, modelo, color, telf, direccion, prop_nombre, prop_apellido } = client;
+
+        const parrafo = document.createElement('p'); //creacion de etiquetas p
+        parrafo.textContent = `${index} - ${nombre} - ${apellido} - ${id} - ${year} - ${placa} - ${image}`; //info que se añade a la lista
+        parrafo.dataset.id = id; //identificar el id para eliminar o modificar
+
+        //BOTONES
+        const editBot = document.createElement('button');
+        editBot.onclick = () => chargeClient(client);
+        editBot.textContent = 'Editar';
+        editBot.classList.add('btn', 'btn-editar');
+        parrafo.append(editBot);
+
+        const eliminateBot = document.createElement('button');
+        eliminateBot.onclick = () => eliminateClient(index);
+        eliminateBot.textContent = 'Borrar';
+        eliminateBot.classList.add('btn', 'btn-eliminar');
+        parrafo.append(eliminateBot);
+
+        const hr = document.createElement('hr');
+
+        divClientes.appendChild(parrafo);
+        divClientes.appendChild(hr);
+    });
+}
+
+function chargeClient(client) {
+    const { index, nombre, apellido, id, year, placa, image, marca, modelo, color, telf, direccion, prop_nombre, prop_apellido } = client;
+
+    placa.value = placa;
+    year.value = year;
+    marca.value = marca;
+    modelo.value = modelo;
+    color.value = color;
+    nombre.value = nombre;
+    apellido.value = apellido;
+    cedula.value = id;
+    telefono.value = telf;
+    direccion.value = direccion;
+    nombre_prop.value = prop_nombre;
+    apellido_prop.value = apellido_prop;
+    imagen.src = imagen;
+
+    objClient.index = id;
+
+    formulario.querySelector('button[type="submit"]').textContent = 'Actualizar';
+
+    editando = true;
+}
+
+function editClient() {
+    objClient.index = Date.now();
+
+    objClient.placa = placa.value;
+    objClient.year = year.value;
+    objClient.marca = placa.value;
+    objClient.modelo = modelo.value;
+    objClient.color = color.value;
+    objClient.nombre = nombre.value;
+    objClient.apellido = apellido.value;
+    objClient.id = cedula.value;
+    objClient.telf = telefono.value;
+    objClient.direccion = direccion.value;
+    objClient.prop_nombre = nombre_prop.value;
+    objClient.prop_apellido = apellido_prop.value;
+    objClient.image = imagen.value;
+
+    listRegistro.map(cliente => {
+        if (cliente.id === objClient.index) {
+            cliente.id = objClient.index;
+            cliente.placa = objClient.placa;
+            cliente.year = objClient.year;
+            cliente.marca = objClient.marca;
+            cliente.modelo = objClient.modelo;
+            cliente.color = objClient.color;
+            cliente.nombre = objClient.nombre;
+            cliente.apellido = objClient.apellido;
+            cliente.cedula = objClient.id;
+            cliente.telefono = objClient.telf;
+            cliente.direccion = objClient.direccion;
+            cliente.nombre_prop = objClient.prop_nombre;
+            cliente.apellido_prop = objClient.prop_apellido;
+            cliente.imagen = objClient.image;
+        }
+    });
+
+    cleanHTML();
+    mostrarClient();
+    placa.value = '';
+    year.value = '';
+    marca.value = '';
+    modelo.value = '';
+    color.value = "#000000";
+    nombre.value = '';
+    apellido.value = '';
+    cedula.value = '';
+    telefono.value = '';
+    direccion.value = '';
+    nombre_prop.value = '';
+    apellido_prop.value = '';
+    imagen.src = 'https://e7.pngegg.com/pngimages/623/754/png-clipart-sports-car-automotive-design-luxury-vehicle-cartoon-luxury-car-cartoon-character-compact-car.png';
+    formulario.querySelector('button[type="submit"]').textContent = 'Agregar';
+}
+
+function eliminateClient(id) {
+    listRegistro = listRegistro.filter(client => client.index !== id);
+    cleanHTML();
+    mostrarClient();
+};
+
+function cleanHTML() {
+    const divClientes = document.querySelector('.div-clientes');
+    while (divClientes.firstChild) {
+        divClientes.removeChild(divClientes.firstChild);
+    }
 }
