@@ -1,71 +1,107 @@
-/*
-* {
+/* Estilos básicos y de tipografía */
+body {
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    background-color: cornflowerblue;
+    background-color: #f4f4f4;
 }
 
 .div-title {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.div-title h1 {
-    font-weight: 300;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
 }
 
 .content {
-    width: 100%;
-    height: calc(100vh - 100px);
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
+    padding: 20px;
 }
 
-/*ESTILOS DEL FORMUARIO*/
-/*
-.content .div-formulario{
-    width: 30%;
-    height: 600px;
-    margin: 15px 15px;
-    background-color: rgb(135, 132, 132);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-    box-shadow: 10px 10px rgb(0, 0, 0, 0.3)
+.div-formulario, .div-employes {
+    background: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 5px;
 }
-/*
-.content .div-formulario h2{
+
+/* Asegurando que el formulario no se estire demasiado */
+.div-formulario {
+    flex: 1;
+    margin-right: 20px;
+    max-width: 400px;
+}
+
+.div-employes {
+    flex: 2;
+    min-width: 300px;
+}
+
+/* Estilos del formulario para que sea más compacto */
+form {
+    display: grid;
+    gap: 3px;
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"], select, input[type="color"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="color"] {
+    padding: 2px;
+    height: 34px; /* Ajuste para mejor visualización */
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    background-color: #007bff;
+    cursor: pointer;
     margin-top: 10px;
-    font-weight: 300;
-    font-size: 2em;
-    color: whitesmoke;
 }
 
-.content .div-formulario form{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+button:hover {
+    background-color: #0056b3;
 }
 
-.content .div-formulario form input, 
-.content .div-formulario form button,
-.content .div-formulario form select
-{
-    width: 60%;
-    padding: 10px 10px;
-    margin: 10px 10px;
+button[type="reset"] {
+    background-color: #dc3545;
 }
 
+button[type="reset"]:hover {
+    background-color: #c82333;
+}
 
+/* Media queries para la responsividad */
+@media (max-width: 768px) {
+    .content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .div-formulario, .div-employes {
+        width: 100%;
+        max-width: none;
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+}
+
+input[type="color"]{
+    width: 30%;
+}
+
+input[type="text"], select{
+    width: 80%;
+}
