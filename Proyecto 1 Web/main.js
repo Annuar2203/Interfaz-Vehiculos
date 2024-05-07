@@ -37,6 +37,7 @@ function changeModel() { //Funcion que trata los selectores de las marcas y sus 
 const carBrandSelect = document.getElementById("car-brand");
 const carModelSelect = document.getElementById("car-model");
 const imagePreview = document.getElementById("image-preview");
+const URL = document.getElementById("url");
 
 // Evento de cambio en la marca
 carBrandSelect.addEventListener("change", updateImage);
@@ -44,7 +45,7 @@ carBrandSelect.addEventListener("change", updateImage);
 // Evento de cambio en el modelo
 carModelSelect.addEventListener("change", updateImage);
 
-function updateImage() { //Previsualizar la imagen del formulario
+function updateImage() { //Previsualizar la imagen del inputFormulario
     const brand = carBrandSelect.value;
     const model = carModelSelect.value;
 
@@ -55,79 +56,100 @@ function updateImage() { //Previsualizar la imagen del formulario
             switch (model) {
                 case "Fiesta":
                     imagePreview.src = "https://media.autoexpress.co.uk/image/private/s--D8BPo2Sn--/v1579701600/autoexpress/2016/08/ford-fiesta-has-seven-years-as-the-uk-top-seller-and-four-years-as-europes-most-popular-small-car.jpg";
+                    URL.value = "https://media.autoexpress.co.uk/image/private/s--D8BPo2Sn--/v1579701600/autoexpress/2016/08/ford-fiesta-has-seven-years-as-the-uk-top-seller-and-four-years-as-europes-most-popular-small-car.jpg";
                     break;
                 case "Focus":
                     imagePreview.src = "https://th.bing.com/th/id/OIP.hwUh0lJffDIBLixuLZCNfgAAAA?rs=1&pid=ImgDetMain";
+                    URL.value = "https://th.bing.com/th/id/OIP.hwUh0lJffDIBLixuLZCNfgAAAA?rs=1&pid=ImgDetMain";
                     break;
                 case "Mustang":
                     imagePreview.src = "https://th.bing.com/th/id/OIP.EBjmeJnssSOPe6M7qqOyUAHaE8?rs=1&pid=ImgDetMain";
+                    URL.value = "https://th.bing.com/th/id/OIP.EBjmeJnssSOPe6M7qqOyUAHaE8?rs=1&pid=ImgDetMain";
                     break;
                 default:
-                    imagePreview.src = "https://e7.pngegg.com/pngimages/623/754/png-clipart-sports-car-automotive-design-luxury-vehicle-cartoon-luxury-car-cartoon-character-compact-car.png"; // Imagen no disponible
+                    imagePreview.src = "https://e7.pngegg.com/pngimages/623/754/png-clipart-sports-car-automotive-design-luxury-vehicle-cartoon-luxury-car-cartoon-character-compact-car.png";
+                    URL.value = "https://e7.pngegg.com/pngimages/623/754/png-clipart-sports-car-automotive-design-luxury-vehicle-cartoon-luxury-car-cartoon-character-compact-car.png";
             }
             break;
         case "chevrolet":
             switch (model) {
                 case "Silverado":
                     imagePreview.src = "https://th.bing.com/th/id/OIP.eyzQA8pcO-MQOWVtAxh_swHaFj?rs=1&pid=ImgDetMain";
+                    URL.value = "https://th.bing.com/th/id/OIP.eyzQA8pcO-MQOWVtAxh_swHaFj?rs=1&pid=ImgDetMain";
                     break;
                 case "Cruze":
                     imagePreview.src = "https://www.trifectaperformance.com/uploads/monthly_2019_11/Press_18.jpg.fa47d02d7827ac9eb85a1d1fea1211d2.jpg";
+                    URL.value = "https://www.trifectaperformance.com/uploads/monthly_2019_11/Press_18.jpg.fa47d02d7827ac9eb85a1d1fea1211d2.jpg";
                     break;
                 case "Camaro":
                     imagePreview.src = "https://th.bing.com/th/id/R.18c077789a05556ed628911b56d61e3f?rik=SPKXIUjVxx7ekA&pid=ImgRaw&r=0";
+                    URL.value = "https://th.bing.com/th/id/R.18c077789a05556ed628911b56d61e3f?rik=SPKXIUjVxx7ekA&pid=ImgRaw&r=0";
                     break;
                 default:
-                    imagePreview.src = "https://e7.pngegg.com/pngimages/623/754/png-clipart-sports-car-automotive-design-luxury-vehicle-cartoon-luxury-car-cartoon-character-compact-car.png"; // Imagen no disponible
+                    imagePreview.src = "https://e7.pngegg.com/pngimages/623/754/png-clipart-sports-car-automotive-design-luxury-vehicle-cartoon-luxury-car-cartoon-character-compact-car.png";
+                    URL.value = "https://e7.pngegg.com/pngimages/623/754/png-clipart-sports-car-automotive-design-luxury-vehicle-cartoon-luxury-car-cartoon-character-compact-car.png";
             }
             break;
         case "toyota":
             switch (model) {
                 case "Corolla":
                     imagePreview.src = "https://quatrorodas.abril.com.br/wp-content/uploads/2019/03/toyota-corolla-2-e1553106218663.jpg?resize=165";
+                    URL.value = "https://quatrorodas.abril.com.br/wp-content/uploads/2019/03/toyota-corolla-2-e1553106218663.jpg?resize=165";
                     break;
                 case "Camry":
                     imagePreview.src = "https://th.bing.com/th/id/R.055986eeba4f91c164d6235dddfafd35?rik=GX4FS1%2bTRsJUcA&pid=ImgRaw&r=0";
+                    URL.value = "https://th.bing.com/th/id/R.055986eeba4f91c164d6235dddfafd35?rik=GX4FS1%2bTRsJUcA&pid=ImgRaw&r=0";
                     break;
                 case "RAV4":
                     imagePreview.src = "https://th.bing.com/th/id/OIP.Ij84y7b5Ftg1thBlGdcC0AHaE8?rs=1&pid=ImgDetMain";
+                    URL.value = "https://th.bing.com/th/id/OIP.Ij84y7b5Ftg1thBlGdcC0AHaE8?rs=1&pid=ImgDetMain";
                     break;
                 default:
-                    imagePreview.src = "https://e7.pngegg.com/pngimages/623/754/png-clipart-sports-car-automotive-design-luxury-vehicle-cartoon-luxury-car-cartoon-character-compact-car.png"; // Imagen no disponible
+                    imagePreview.src = "https://e7.pngegg.com/pngimages/623/754/png-clipart-sports-car-automotive-design-luxury-vehicle-cartoon-luxury-car-cartoon-character-compact-car.png";
+                    URL.value = "https://e7.pngegg.com/pngimages/623/754/png-clipart-sports-car-automotive-design-luxury-vehicle-cartoon-luxury-car-cartoon-character-compact-car.png";
             }
             break;
         case "honda":
             switch (model) {
                 case "Civic":
                     imagePreview.src = "https://th.bing.com/th/id/R.df0384434b0f3c62dc3a19dbd9bbc61e?rik=tGmLJ8avZyD6eA&pid=ImgRaw&r=0";
+                    URL.value = "https://th.bing.com/th/id/R.df0384434b0f3c62dc3a19dbd9bbc61e?rik=tGmLJ8avZyD6eA&pid=ImgRaw&r=0";
                     break;
                 case "Accord":
                     imagePreview.src = "https://th.bing.com/th/id/R.68f67082ec6a531a0f633b112f7302d5?rik=gG2mkTrMFLivEQ&pid=ImgRaw&r=0";
+                    URL.value = "https://th.bing.com/th/id/R.68f67082ec6a531a0f633b112f7302d5?rik=gG2mkTrMFLivEQ&pid=ImgRaw&r=0";
                     break;
                 case "CR-V":
                     imagePreview.src = "https://th.bing.com/th/id/OIP.ItKC3uSSwlfxOUrtB0JpJwHaE7?rs=1&pid=ImgDetMain";
+                    URL.value = "https://th.bing.com/th/id/OIP.ItKC3uSSwlfxOUrtB0JpJwHaE7?rs=1&pid=ImgDetMain";
                     break;
                 default:
-                    imagePreview.src = "https://e7.pngegg.com/pngimages/623/754/png-clipart-sports-car-automotive-design-luxury-vehicle-cartoon-luxury-car-cartoon-character-compact-car.png"; // Imagen no disponible
+                    imagePreview.src = "https://e7.pngegg.com/pngimages/623/754/png-clipart-sports-car-automotive-design-luxury-vehicle-cartoon-luxury-car-cartoon-character-compact-car.png";
+                    URL.value = "https://e7.pngegg.com/pngimages/623/754/png-clipart-sports-car-automotive-design-luxury-vehicle-cartoon-luxury-car-cartoon-character-compact-car.png";
             }
             break;
         case "volkswagen":
             switch (model) {
                 case "Golf":
                     imagePreview.src = "https://th.bing.com/th/id/R.e9ea6a605fd058f7b19004b16b8a3472?rik=5AOPNaskTrlrCg&riu=http%3a%2f%2fwww.sembang-auto.com%2fwp-content%2fuploads%2f2012%2f09%2fVW-Golf-1.jpg&ehk=BrIX8fXAcvr4IjYYB64xACS%2fNdD5pXOspewkt%2fLup0I%3d&risl=&pid=ImgRaw&r=0";
+                    URL.value = "https://th.bing.com/th/id/R.e9ea6a605fd058f7b19004b16b8a3472?rik=5AOPNaskTrlrCg&riu=http%3a%2f%2fwww.sembang-auto.com%2fwp-content%2fuploads%2f2012%2f09%2fVW-Golf-1.jpg&ehk=BrIX8fXAcvr4IjYYB64xACS%2fNdD5pXOspewkt%2fLup0I%3d&risl=&pid=ImgRaw&r=0";
                     break;
                 case "Jetta":
                     imagePreview.src = "https://th.bing.com/th/id/R.cb85d20e0e2133ddb06a81ed47092e43?rik=92dafdC4Nl9Pzg&riu=http%3a%2f%2fcdn.carbuzz.com%2fgallery-images%2f1600%2f509000%2f400%2f509421.jpg&ehk=rgA6iQFt8YEKLGkrMAY2fUhFRvF3eTaNAUlJmAW%2fgZc%3d&risl=&pid=ImgRaw&r=0";
+                    URL.value =  "https://th.bing.com/th/id/R.cb85d20e0e2133ddb06a81ed47092e43?rik=92dafdC4Nl9Pzg&riu=http%3a%2f%2fcdn.carbuzz.com%2fgallery-images%2f1600%2f509000%2f400%2f509421.jpg&ehk=rgA6iQFt8YEKLGkrMAY2fUhFRvF3eTaNAUlJmAW%2fgZc%3d&risl=&pid=ImgRaw&r=0";
                     break;
                 case "Tiguan":
                     imagePreview.src = "https://th.bing.com/th/id/OIP.x05eMbtzvdrvi4Le2445_AHaEK?rs=1&pid=ImgDetMain";
+                    URL.value = "https://th.bing.com/th/id/OIP.x05eMbtzvdrvi4Le2445_AHaEK?rs=1&pid=ImgDetMain";
                     break;
                 default:
-                    imagePreview.src = "https://e7.pngegg.com/pngimages/623/754/png-clipart-sports-car-automotive-design-luxury-vehicle-cartoon-luxury-car-cartoon-character-compact-car.png"; // Imagen no disponible
+                    imagePreview.src = "https://e7.pngegg.com/pngimages/623/754/png-clipart-sports-car-automotive-design-luxury-vehicle-cartoon-luxury-car-cartoon-character-compact-car.png";
+                    URL.value = "https://e7.pngegg.com/pngimages/623/754/png-clipart-sports-car-automotive-design-luxury-vehicle-cartoon-luxury-car-cartoon-character-compact-car.png";
             }
             break;
         default:
-            imagePreview.src = "https://e7.pngegg.com/pngimages/623/754/png-clipart-sports-car-automotive-design-luxury-vehicle-cartoon-luxury-car-cartoon-character-compact-car.png"; // Imagen no disponible
+            imagePreview.src = "https://e7.pngegg.com/pngimages/623/754/png-clipart-sports-car-automotive-design-luxury-vehicle-cartoon-luxury-car-cartoon-character-compact-car.png";
+            URL.value = "https://e7.pngegg.com/pngimages/623/754/png-clipart-sports-car-automotive-design-luxury-vehicle-cartoon-luxury-car-cartoon-character-compact-car.png";
     }
 }
 
@@ -136,6 +158,8 @@ function updateImage() { //Previsualizar la imagen del formulario
 // AGREGAR
 
 let listRegistro = [];
+let indice = 1;
+
 const objClient = {
     index: '',
     placa: '',
@@ -150,34 +174,36 @@ const objClient = {
     direccion: '',
     prop_nombre: '',
     prop_apellido: '',
+    url: '',
     image: '',
 }
 
 let editando = false; //deteca cuando agrega o actualiza la lista
 
-const formulario = document.querySelector('#form'); //id etiquetas
-const placa = document.querySelector('#placa');
-const year = document.querySelector('#year');
-const marca = document.querySelector('#car-brand');
-const modelo = document.querySelector('#car-model');
-const color = document.querySelector('#color');
-const nombre = document.querySelector('#name');
-const apellido = document.querySelector('#lastname');
-const cedula = document.querySelector('#id');
-const telefono = document.querySelector('#phone');
-const direccion = document.querySelector('#direction');
-const nombre_prop = document.querySelector('#property-name');
-const apellido_prop = document.querySelector('#property-lastname');
-const imagen = document.querySelector('#image-preview');
+const inputFormulario = document.querySelector('#form'); //id etiquetas
+const inputPlaca = document.querySelector('#placa');
+const inputYear = document.querySelector('#year');
+const inputMarca = document.querySelector('#car-brand');
+const inputModelo = document.querySelector('#car-model');
+const inputColor = document.querySelector('#color');
+const inputNombre = document.querySelector('#name');
+const inputApellido = document.querySelector('#lastname');
+const inputCedula = document.querySelector('#id');
+const inputTelefono = document.querySelector('#phone');
+const inputDireccion = document.querySelector('#direction');
+const inputNombre_prop = document.querySelector('#property-name');
+const inputApellido_prop = document.querySelector('#property-lastname');
+var inputURL = document.querySelector('#url');
+const etImagen = document.querySelector('#image-preview');
 const btnAgregate = document.querySelector('#agregate');
 
-formulario.addEventListener('submit', validarForm);
+inputFormulario.addEventListener('submit', validarForm);
 
 function validarForm(e) { //AGREGAR ELIMINAR O EDITAR
     e.preventDefault();
 
     //VALIDACIONES
-    if (placa.value === '') {
+    if (inputPlaca.value === '') {
         alert('Todos los campos son obligatorios');
         return;
     }
@@ -189,20 +215,21 @@ function validarForm(e) { //AGREGAR ELIMINAR O EDITAR
 
     //AGREGAR    
     } else {
-        objClient.index = Date.now();
-        objClient.placa = placa.value;
-        objClient.year = year.value;
-        objClient.marca = placa.value;
-        objClient.modelo = modelo.value;
-        objClient.color = color.value;
-        objClient.nombre = nombre.value;
-        objClient.apellido = apellido.value;
-        objClient.id = cedula.value;
-        objClient.telf = telefono.value;
-        objClient.direccion = direccion.value;
-        objClient.prop_nombre = nombre_prop.value;
-        objClient.prop_apellido = apellido_prop.value;
-        objClient.image = imagen.value;
+        objClient.index = indice++;
+        objClient.placa = inputPlaca.value;
+        objClient.year = inputYear.value;
+        objClient.marca = inputMarca.value;
+        objClient.modelo = inputModelo.value;
+        objClient.color = inputColor.value;
+        objClient.nombre = inputNombre.value;
+        objClient.apellido = inputApellido.value;
+        objClient.id = inputCedula.value;
+        objClient.telf = inputTelefono.value;
+        objClient.direccion = inputDireccion.value;
+        objClient.prop_nombre = inputNombre_prop.value;
+        objClient.prop_apellido = inputApellido_prop.value;
+        objClient.url = inputURL.value;
+        objClient.image = inputURL.value;
 
         agregateClient();
     }
@@ -213,20 +240,21 @@ function agregateClient() {
     listRegistro.push({ ...objClient }); //metodo PUSH para agregar un cliente
     mostrarClient(); //Mostrar lista actualizada
     //LIMPIAR CAMPOS
-    placa.value = '';
-    year.value = '';
-    marca.value = '';
-    modelo.value = '';
-    color.value = "#000000";
-    nombre.value = '';
-    apellido.value = '';
-    cedula.value = '';
-    telefono.value = '';
-    direccion.value = '';
-    nombre_prop.value = '';
-    apellido_prop.value = '';
-    imagen.src = 'https://e7.pngegg.com/pngimages/623/754/png-clipart-sports-car-automotive-design-luxury-vehicle-cartoon-luxury-car-cartoon-character-compact-car.png';
-    cleanObject(); //limpiar formulario
+    inputPlaca.value = '';
+    inputYear.value = '';
+    inputMarca.value = '';
+    inputModelo.value = '';
+    inputColor.value = "#000000";
+    inputNombre.value = '';
+    inputApellido.value = '';
+    inputCedula.value = '';
+    inputTelefono.value = '';
+    inputDireccion.value = '';
+    inputNombre_prop.value = '';
+    inputApellido_prop.value = '';
+    inputURL = 'https://e7.pngegg.com/pngimages/623/754/png-clipart-sports-car-automotive-design-luxury-vehicle-cartoon-luxury-car-cartoon-character-compact-car.png';
+    etImagen.src = 'https://e7.pngegg.com/pngimages/623/754/png-clipart-sports-car-automotive-design-luxury-vehicle-cartoon-luxury-car-cartoon-character-compact-car.png';
+    cleanObject(); //limpiar inputFormulario
 }
 
 function cleanObject() {
@@ -244,6 +272,7 @@ function cleanObject() {
     objClient.prop_nombre = '';
     objClient.prop_apellido = '';
     objClient.image = '';
+    objClient.url = '';
 }
 
 
@@ -253,7 +282,7 @@ function mostrarClient() {
 
     const divClientes = document.querySelector('.div-clientes'); //parte donde se agregan los elementos html
     listRegistro.forEach(client => {
-        const { index, nombre, apellido, id, year, placa, image, marca, modelo, color, telf, direccion, prop_nombre, prop_apellido } = client;
+        const { index, nombre, apellido, id, year, placa, image, marca, modelo, color, telf, direccion, prop_nombre, prop_apellido, url} = client;
 
         const parrafo = document.createElement('p'); //creacion de etiquetas p
         parrafo.textContent = `${index} - ${nombre} - ${apellido} - ${id} - ${year} - ${placa} - ${image}`; //info que se añade a la lista
@@ -280,49 +309,67 @@ function mostrarClient() {
 }
 
 function chargeClient(client) {
-    const { index, nombre, apellido, id, year, placa, image, marca, modelo, color, telf, direccion, prop_nombre, prop_apellido } = client;
+    const { index, nombre, apellido, id, year, placa, image, marca, modelo, color, telf, direccion, prop_nombre, prop_apellido, url } = client;
 
-    placa.value = placa;
-    year.value = year;
-    marca.value = marca;
-    modelo.value = modelo;
-    color.value = color;
-    nombre.value = nombre;
-    apellido.value = apellido;
-    cedula.value = id;
-    telefono.value = telf;
-    direccion.value = direccion;
-    nombre_prop.value = prop_nombre;
-    apellido_prop.value = apellido_prop;
-    imagen.src = imagen;
+    console.log(index);
+    console.log(nombre);
+    console.log(apellido);
+    console.log(id);
+    console.log(year);
+    console.log(placa);
+    console.log(image);
+    console.log(marca);
+    console.log(modelo);
+    console.log(color);
+    console.log(telf);
+    console.log(direccion);
+    console.log(prop_nombre);
+    console.log(prop_apellido);
+    console.log(url);
+
+    inputPlaca.value = placa;
+    inputYear.value = year;
+    inputMarca.value = marca;
+    inputModelo.value = modelo;
+    inputColor.value = color;
+    inputNombre.value = nombre;
+    inputApellido.value = apellido;
+    inputCedula.value = id;
+    inputTelefono.value = telf;
+    inputDireccion.value = direccion;
+    inputNombre_prop.value = prop_nombre;
+    inputApellido_prop.value = prop_apellido;
+    inputURL = url;
+    etImagen.src = url;
 
     objClient.index = id;
 
-    formulario.querySelector('button[type="submit"]').textContent = 'Actualizar';
+    inputFormulario.querySelector('button[type="submit"]').textContent = 'Actualizar';
 
     editando = true;
 }
 
 function editClient() {
-    objClient.index = Date.now();
+    objClient.index = indice;
+    objClient.placa = inputPlaca.value;
+    objClient.year = inputYear.value;
+    objClient.marca = inputMarca.value;
+    objClient.modelo = inputModelo.value;
+    objClient.color = inputColor.value;
+    objClient.nombre = inputNombre.value;
+    objClient.apellido = inputApellido.value;
+    objClient.id = inputCedula.value;
+    objClient.telf = inputTelefono.value;
+    objClient.direccion = inputDireccion.value;
+    objClient.prop_nombre = inputNombre_prop.value;
+    objClient.prop_apellido = inputApellido_prop.value;
+    objClient.url = inputURL.value;
+    objClient.image = etImagen.src;
 
-    objClient.placa = placa.value;
-    objClient.year = year.value;
-    objClient.marca = placa.value;
-    objClient.modelo = modelo.value;
-    objClient.color = color.value;
-    objClient.nombre = nombre.value;
-    objClient.apellido = apellido.value;
-    objClient.id = cedula.value;
-    objClient.telf = telefono.value;
-    objClient.direccion = direccion.value;
-    objClient.prop_nombre = nombre_prop.value;
-    objClient.prop_apellido = apellido_prop.value;
-    objClient.image = imagen.value;
 
-    listRegistro.map(cliente => {
-        if (cliente.id === objClient.index) {
-            cliente.id = objClient.index;
+    listRegistro.forEach(cliente => {
+        if (cliente.index === objClient.index) {
+            cliente.index = objClient.index;
             cliente.placa = objClient.placa;
             cliente.year = objClient.year;
             cliente.marca = objClient.marca;
@@ -330,31 +377,33 @@ function editClient() {
             cliente.color = objClient.color;
             cliente.nombre = objClient.nombre;
             cliente.apellido = objClient.apellido;
-            cliente.cedula = objClient.id;
-            cliente.telefono = objClient.telf;
+            cliente.id = objClient.id;
+            cliente.telf = objClient.telf;
             cliente.direccion = objClient.direccion;
-            cliente.nombre_prop = objClient.prop_nombre;
-            cliente.apellido_prop = objClient.prop_apellido;
+            cliente.prop_nombre = objClient.prop_nombre;
+            cliente.prop_apellido = objClient.prop_apellido;
+            cliente.url = objClient.url;
             cliente.imagen = objClient.image;
         }
     });
 
     cleanHTML();
     mostrarClient();
-    placa.value = '';
-    year.value = '';
-    marca.value = '';
-    modelo.value = '';
-    color.value = "#000000";
-    nombre.value = '';
-    apellido.value = '';
-    cedula.value = '';
-    telefono.value = '';
-    direccion.value = '';
-    nombre_prop.value = '';
-    apellido_prop.value = '';
-    imagen.src = 'https://e7.pngegg.com/pngimages/623/754/png-clipart-sports-car-automotive-design-luxury-vehicle-cartoon-luxury-car-cartoon-character-compact-car.png';
-    formulario.querySelector('button[type="submit"]').textContent = 'Agregar';
+    inputPlaca.value = '';
+    inputYear.value = '';
+    inputMarca.value = '';
+    inputModelo.value = '';
+    inputColor.value = "#000000";
+    inputNombre.value = '';
+    inputApellido.value = '';
+    inputCedula.value = '';
+    inputTelefono.value = '';
+    inputDireccion.value = '';
+    inputNombre_prop.value = '';
+    inputApellido_prop.value = '';
+    inputURL.value = '';
+    etImagen.src = 'https://e7.pngegg.com/pngimages/623/754/png-clipart-sports-car-automotive-design-luxury-vehicle-cartoon-luxury-car-cartoon-character-compact-car.png';
+    inputFormulario.querySelector('button[type="submit"]').textContent = 'Agregar';
 }
 
 function eliminateClient(id) {
