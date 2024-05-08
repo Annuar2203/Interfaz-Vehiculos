@@ -1,107 +1,147 @@
-/* Estilos básicos y de tipografía */
+/* Estilos para el diseño responsivo */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Roboto', sans-serif; /* Fuente recomendada */
+    background-color: #f8f9fa; /* Color de fondo */
 }
 
 .div-title {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 0;
-    text-align: center;
+    background-color: #006400; /* Verde oscuro para el encabezado */
+    color: #fff; /* Texto blanco en el encabezado */
+    padding: 0; /* Sin relleno interno */
+    margin: 0; /* Sin margen externo */
+    width: 100%; /* Ocupa todo el ancho */
+    box-sizing: border-box; /* Incluye padding en el ancho */
+    font-size: 24px; /* Tamaño de fuente */
+    text-align: center; /* Centra el texto */
 }
+
+
 
 .content {
     display: flex;
-    justify-content: space-around;
-    padding: 20px;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 1200px; /* Ancho máximo para evitar que el contenido se extienda demasiado */
+    margin-top: 20px;
 }
 
-.div-formulario, .div-employes {
-    background: white;
+.div-formulario {
+    flex: 1; /* Toma todo el espacio disponible */
+    margin-right: 20px; /* Espacio entre el formulario y los registros */
+}
+
+.div-formulario h2 {
+    color: #333;
+}
+
+.div-formulario form {
+    border: 1px solid #ccc;
     padding: 20px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    background-color: #fff; /* Fondo blanco */
+}
+
+.div-formulario label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.div-formulario input[type="text"],
+.div-formulario select {
+    width: calc(100% - 16px); /* Ancho ajustado con margen */
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.div-formulario input[type="color"] {
+    width: 50px; /* Ancho fijo para el input de color */
+    padding: 0;
+    border: none;
+}
+
+.div-formulario input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+.div-formulario input[type="color"]::-webkit-color-swatch {
+    border: none;
     border-radius: 5px;
 }
 
-/* Asegurando que el formulario no se estire demasiado */
-.div-formulario {
-    flex: 1;
-    margin-right: 20px;
-    max-width: 400px;
-}
-
-.div-employes {
-    flex: 2;
-    min-width: 300px;
-}
-
-/* Estilos del formulario para que sea más compacto */
-form {
-    display: grid;
-    gap: 3px;
-}
-
-label {
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-input[type="text"], select, input[type="color"] {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-input[type="color"] {
-    padding: 2px;
-    height: 34px; /* Ajuste para mejor visualización */
-}
-
-button {
-    padding: 10px 15px;
+.div-formulario button {
+    padding: 10px 20px;
     border: none;
-    border-radius: 4px;
-    color: white;
-    background-color: #007bff;
+    border-radius: 5px;
     cursor: pointer;
-    margin-top: 10px;
 }
 
-button:hover {
-    background-color: #0056b3;
+
+/* Estilos para la tabla de registros */
+#table-clients {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
 }
 
-button[type="reset"] {
-    background-color: #dc3545;
+#table-clients th,
+#table-clients td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
 }
 
-button[type="reset"]:hover {
-    background-color: #c82333;
+#table-clients th {
+    background-color: #f2f2f2;
 }
 
-/* Media queries para la responsividad */ 
+#table-clients img {
+    max-width: 50px;
+    max-height: 50px;
+}
+
+/* Estilos para los botones de acciones */
+.btn-ver {
+    background-color: #007bff; /* Azul */
+    color: #fff;
+}
+
+.btn-editar {
+    background-color: #28a745; /* Verde */
+    color: #fff;
+}
+
+.btn-eliminar {
+    background-color: #dc3545; /* Rojo */
+    color: #fff;
+}
+
+/* Estilos para la tabla de registros en pantallas pequeñas */
 @media (max-width: 768px) {
     .content {
-        flex-direction: column;
+        flex-direction: column; /* Cambia a diseño de columna en pantallas pequeñas */
         align-items: center;
     }
 
-    .div-formulario, .div-employes {
-        width: 100%;
-        max-width: none;
-        margin-right: 0;
-        margin-bottom: 20px;
+    .div-formulario {
+        width: 100%; /* El formulario ocupa todo el ancho en pantallas pequeñas */
+        margin-right: 0; /* Sin margen en pantallas pequeñas */
+        margin-bottom: 20px; /* Espacio entre el formulario y la tabla en pantallas pequeñas */
     }
 }
 
-input[type="color"]{
-    width: 30%;
+.div-formulario button#agregate {
+    background-color: #007bff; /* Azul para el botón Agregar */
+    color: #fff;
 }
 
-input[type="text"], select{
-    width: 80%;
+.div-formulario button#reset {
+    background-color: #dc3545; /* Rojo para el botón Limpiar */
+    color: #fff;
 }
