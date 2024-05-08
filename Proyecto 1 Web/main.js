@@ -17,6 +17,7 @@ const inputNombre_prop = document.querySelector('#property-name');
 const inputApellido_prop = document.querySelector('#property-lastname');
 var inputURL = document.querySelector('#url');
 const etImagen = document.querySelector('#image-preview');
+const inputIndex = document.querySelector('#index');
 
 const btnAgregate = document.querySelector('#agregate');
 const btnReset = document.querySelector('#reset');
@@ -72,6 +73,26 @@ static obtainFromForm() {
             inputURL.src
         );
     }
+
+    static editFromForm() {
+        return new Cliente(
+                inputIndex.value,
+                inputPlaca.value,
+                inputYear.value,
+                inputMarca.value,
+                inputModelo.value,
+                inputColor.value,
+                inputNombre.value,
+                inputApellido.value,
+                inputCedula.value,
+                inputTelefono.value,
+                inputDireccion.value,
+                inputNombre_prop.value,
+                inputApellido_prop.value,
+                inputURL.value,
+                inputURL.src
+            );
+        }
 }
 
 class RegistroCliente {
@@ -93,12 +114,13 @@ class RegistroCliente {
     }
 
     editClient(cliente) {
-        const index = cliente.index;
+        index = inputIndex.value;
         console.log(index);
-        this.listaClientes[index - 1] = cliente;
+        this.listaClientes[index-1] = cliente;
     }
 
     chargeSee(cliente){
+        inputIndex = cliente.index;
         inputPlaca.value = cliente.placa;
         inputYear.value = cliente.year;
         inputMarca.value = cliente.marca;
@@ -118,6 +140,8 @@ class RegistroCliente {
     }
 
     charge(cliente){
+
+        inputIndex.value = cliente.index;
         inputPlaca.value = cliente.placa;
         inputYear.value = cliente.year;
         inputMarca.value = cliente.marca;
@@ -209,7 +233,7 @@ function validarForm(e) { //AGREGAR ELIMINAR O EDITAR
 
     //EDITAR
     if (registro.editando) {
-        registro.editClient(Cliente.obtainFromForm());
+        registro.editClient(Cliente.editFromForm());
         registro.editando = false;
         inputFormulario.querySelector('button[type="submit"]').textContent = 'Agregar';
     //AGREGAR    
