@@ -110,36 +110,21 @@ class RegistroCliente {
 
     eliminateClient(index) {
         this.listaClientes.splice(index - 1, 1);
-        registro.showClient();    
+        this.index--; //Reduce el contador de los indices
+        this.listaClientes.forEach((cliente, i) => {
+            cliente.index = i + 1; //actualiza indices
+        });
+        registro.showClient(); //muestra la tabla despues de eliminar
     }
 
     editClient(cliente) {
-        index = inputIndex.value;
-        console.log(index);
+        index = parseInt(inputIndex.value);
         this.listaClientes[index-1] = cliente;
     }
 
-    chargeSee(cliente){
-        inputIndex = cliente.index;
-        inputPlaca.value = cliente.placa;
-        inputYear.value = cliente.year;
-        inputMarca.value = cliente.marca;
-        inputModelo.value = cliente.modelo;
-        inputColor.value = cliente.color;
-        inputNombre.value = cliente.nombre;
-        inputApellido.value = cliente.apellido;
-        inputCedula.value = cliente.id;
-        inputTelefono.value = cliente.telf;
-        inputDireccion.value = cliente.direccion;
-        inputNombre_prop.value = cliente.prop_nombre;
-        inputApellido_prop.value = cliente.prop_apellido;
-        inputURL.value = cliente.url;
-        etImagen.src = cliente.url;
-
-        inputFormulario.querySelector('button[type="submit"]').textContent = 'Agregar';
-    }
-
-    charge(cliente){
+    chargeSee(index){
+        
+        const cliente = this.listaClientes.find(cliente => cliente.index === index);
 
         inputIndex.value = cliente.index;
         inputPlaca.value = cliente.placa;
@@ -156,7 +141,31 @@ class RegistroCliente {
         inputApellido_prop.value = cliente.prop_apellido;
         inputURL.value = cliente.url;
         etImagen.src = cliente.url;
-    
+        
+        inputFormulario.querySelector('button[type="submit"]').textContent = 'Agregar';
+    }
+
+    charge(index){
+
+        const cliente = this.listaClientes.find(cliente => cliente.index === index);
+        
+        inputIndex.value = cliente.index;
+        inputPlaca.value = cliente.placa;
+        inputYear.value = cliente.year;
+        inputMarca.value = cliente.marca;
+        inputModelo.value = cliente.modelo;
+        inputColor.value = cliente.color;
+        inputNombre.value = cliente.nombre;
+        inputApellido.value = cliente.apellido;
+        inputCedula.value = cliente.id;
+        inputTelefono.value = cliente.telf;
+        inputDireccion.value = cliente.direccion;
+        inputNombre_prop.value = cliente.prop_nombre;
+        inputApellido_prop.value = cliente.prop_apellido;
+        inputURL.value = cliente.url;
+        etImagen.src = cliente.url;
+        
+
         btnAgregate.disabled = false;
         this.editando = true;
         inputFormulario.querySelector('button[type="submit"]').textContent = 'Actualizar';
@@ -175,47 +184,34 @@ class RegistroCliente {
     showClient() {
         cleanHTML();
 
-        const divClientes = document.querySelector('.div-clientes');
+        const tableClients = document.getElementById('table-clients').getElementsByTagName('tbody')[0];
+        tableClients.innerHTML = '' //Limpia la tabla antes de agregar una fila
+
         this.listaClientes.forEach(cliente => {
-            const { index, nombre, apellido, id, year, placa, image, marca, modelo, color, telf, direccion, prop_nombre, prop_apellido, url } = cliente;
-            const parrafo = document.createElement('p'); //creacion de etiquetas p
-            const texto = document.createTextNode(`${cliente.index} - ${cliente.nombre} - ${cliente.apellido} - ${cliente.id} - ${cliente.year} - ${cliente.placa} - `); //nodo que contiene texto
-            parrafo.dataset.id = cliente.id; //identificar el id para eliminar o modificar
+            const fila = document.createElement('tr');
 
-            const foto = document.createElement('img'); //creacion de etiquetas de imagen
-            foto.src = url; //le pasamos el url al atributo de la ruta de la foto
-            foto.height = 50; //establecemos tamaños
-            foto.width = 50;
+            const celdas = [
+                cliente.index,
+                cliente.nombre,
+                cliente.apellido,
+                cliente.id,
+                cliente.year,
+                cliente.placa,
+                `<img src="${cliente.url}" height="50" widdth="50">`,
+                `<button class="btn-ver" onclick="registro.seeClient(${cliente.index})">Ver</button>
+                <button class="btn-editar" onclick="registro.charge(${cliente.index})">Editar</button>
+                <button class="btn-eliminar" onclick="registro.eliminateClient(${cliente.index})">Eliminar</button>`
+            ];
 
-            parrafo.appendChild(texto); //Unimos las dos etiquetas
-            parrafo.appendChild(foto);
+            celdas.forEach(valor => {
+                const celda = document.createElement('td');
+                celda.innerHTML = valor;
+                fila.appendChild(celda);
+            });
 
-            //BOTONES
-            //VER            
-            const seeBot = document.createElement('button');
-            seeBot.onclick = () => registro.seeClient(cliente);
-            seeBot.textContent = 'Ver';
-            seeBot.classList.add('btn', 'btn-ver');
-            parrafo.append(seeBot);
-
-            //EDITAR
-            const editBot = document.createElement('button');
-            editBot.onclick = () => registro.charge(cliente);
-            editBot.textContent = 'Editar';
-            editBot.classList.add('btn', 'btn-editar');
-            parrafo.append(editBot);
-
-            //BORRAR
-            const eliminateBot = document.createElement('button');
-            eliminateBot.onclick = () => registro.eliminateClient(cliente.index);
-            eliminateBot.textContent = 'Borrar';
-            eliminateBot.classList.add('btn', 'btn-eliminar');
-            parrafo.append(eliminateBot);
-
-            const hr = document.createElement('hr');
-            divClientes.appendChild(parrafo);
-            divClientes.appendChild(hr);
+            tableClients.appendChild(fila);
         });
+
     }
 } //FIN DE LAS CLASES
 

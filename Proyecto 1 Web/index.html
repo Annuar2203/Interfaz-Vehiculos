@@ -77,12 +77,27 @@
                 <button type="reset" id="reset">Limpiar</button>
             </form>
         </div>
-        <input type="hidden" id="index">
+        <input type="hidden" id="index"> <!--Usado para guardar el indice-->
+
         <div>
             <h2>Listado de Clientes</h2>
-            <div class="div-clientes">
-                <!--Aqui se agregan los registros-->
-            </div>
+            <table id="table-clients">
+                <thead>
+                    <tr>
+                        <th>Indice</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Cédula</th>
+                        <th>Año</th>
+                        <th>Placa</th>
+                        <th>Imagen</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>    
+                <tbody class="div-clientes">
+                    <!--Aqui se agregan los registros-->
+                </tbody>
+            </table>
         </div>
 
     </div>
