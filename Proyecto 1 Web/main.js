@@ -248,7 +248,7 @@ function validarForm(e) { //AGREGAR ELIMINAR O EDITAR
     const formatoPlaca = /^[a-zA-Z0-9]{1,8}$/;
     const formatoURL = /^https:\/\//;
     const valueDireccion = inputDireccion.value !== '';
-    const soloTexto = /^[A-Za-z\s]+$/;
+    const soloTexto = /^[A-Za-z\sñáéíóúÁÉÍÓÚ]+$/;
     const telefonoValido = /^0\d{3}-\d{7}$/;
     const añoVehiculo = parseInt(inputYear.value);
     const cedula = parseInt(inputCedula.value);
