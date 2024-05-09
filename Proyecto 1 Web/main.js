@@ -29,7 +29,7 @@ btnReset.addEventListener('click', function () { //Si se hace click, se habilita
     etImagen.src = 'https://d1yjjnpx0p53s8.cloudfront.net/styles/logo-original-577x577/s3/102012/logoujap.png?itok=--szBodC';
 })
 
-inputURL.addEventListener('input', function () { //Si se hace click, se habilita Agregar
+inputURL.addEventListener('input', function () { //Si se pone un URL que lleve a una imagen, se actualiza la etiqeuta Image
     etImagen.src = inputURL.value;
 })
 
@@ -54,8 +54,8 @@ class Cliente {
         this.image = image;
     }
 
-static obtainFromForm() {
-    return new Cliente(
+    static obtainFromForm() { //Obtener del Formulario para Agregar
+        return new Cliente(
             1,
             inputPlaca.value,
             inputYear.value,
@@ -74,58 +74,59 @@ static obtainFromForm() {
         );
     }
 
-    static editFromForm() {
+    static editFromForm() { //Obtener del formulario para Editar
         return new Cliente(
-                inputIndex.value,
-                inputPlaca.value,
-                inputYear.value,
-                inputMarca.value,
-                inputModelo.value,
-                inputColor.value,
-                inputNombre.value,
-                inputApellido.value,
-                inputCedula.value,
-                inputTelefono.value,
-                inputDireccion.value,
-                inputNombre_prop.value,
-                inputApellido_prop.value,
-                inputURL.value,
-                inputURL.src
-            );
-        }
+            inputIndex.value,
+            inputPlaca.value,
+            inputYear.value,
+            inputMarca.value,
+            inputModelo.value,
+            inputColor.value,
+            inputNombre.value,
+            inputApellido.value,
+            inputCedula.value,
+            inputTelefono.value,
+            inputDireccion.value,
+            inputNombre_prop.value,
+            inputApellido_prop.value,
+            inputURL.value,
+            inputURL.src
+        );
+    }
 }
 
 class RegistroCliente {
     constructor() {
-        this.listaClientes = [];
+        this.listaClientes = []; //se guardaran los registros
         this.index = 1;
-        this.editando = false;
+        this.editando = false; //Variable que controla si en el evento del submit se edita o agrega
     }
 
-    agregateClient(cliente) {
+    agregateClient(cliente) { //AGREGATE
         cliente.index = this.index;
         this.listaClientes.push(cliente);
-        this.index++;
+        this.index++; //SE SUMA EL INDEX DE LOS REGISTROS
     }
 
-    eliminateClient(index) {
-        this.listaClientes.splice(index - 1, 1);
+    eliminateClient(index) { //ELIMINAR
+        this.listaClientes.splice(index - 1, 1); //
         this.index--; //Reduce el contador de los indices
         this.listaClientes.forEach((cliente, i) => {
-            cliente.index = i + 1; //actualiza indices
+            cliente.index = i + 1; //actualiza indices para evitar que haya conflictos al Editar
         });
         registro.showClient(); //muestra la tabla despues de eliminar
     }
 
     editClient(cliente) {
-        index = parseInt(inputIndex.value);
-        this.listaClientes[index-1] = cliente;
+        index = parseInt(inputIndex.value); //convertimos el indice en entero
+        this.listaClientes[index - 1] = cliente; //se le resta 1 al index para guardar en la misma posicion en que se edito
+        registro.showClient();
     }
 
-    chargeSee(index){
-        
+    chargeSee(index) {
+        //se busca el cliente por el indice
         const cliente = this.listaClientes.find(cliente => cliente.index === index);
-
+        //se desglosa el el objeto para asignarle valores al formulario
         inputIndex.value = cliente.index;
         inputPlaca.value = cliente.placa;
         inputYear.value = cliente.year;
@@ -141,14 +142,16 @@ class RegistroCliente {
         inputApellido_prop.value = cliente.prop_apellido;
         inputURL.value = cliente.url;
         etImagen.src = cliente.url;
-        
+        //Se cambia el texto del boton a Agregar para evitar conflictos con Actualizar
         inputFormulario.querySelector('button[type="submit"]').textContent = 'Agregar';
+
+        //cabe destacar que la variable controladora no es llamada, ya que solo queremos ver el resgitro sin modificarlo
     }
 
-    charge(index){
-
+    charge(index) {
+        //se busca el cliente por el indice
         const cliente = this.listaClientes.find(cliente => cliente.index === index);
-        
+        //se desglosa el el objeto para asignarle valores al formulario
         inputIndex.value = cliente.index;
         inputPlaca.value = cliente.placa;
         inputYear.value = cliente.year;
@@ -164,33 +167,40 @@ class RegistroCliente {
         inputApellido_prop.value = cliente.prop_apellido;
         inputURL.value = cliente.url;
         etImagen.src = cliente.url;
-        
 
-        btnAgregate.disabled = false;
-        this.editando = true;
+        btnAgregate.disabled = false; //el boton que envia el formulario se activa en caso de estar desactivado
+        this.editando = true; //se le dice a la variable controladora que edite
+        //Se cambia el texto del boton a Actualizar para evitar conflictos con Agregar
         inputFormulario.querySelector('button[type="submit"]').textContent = 'Actualizar';
     }
 
-    seeClient(cliente){
+    seeClient(cliente) {
         this.chargeSee(cliente);
+        cleanObject(); //limpiar objeto 
         btnAgregate.disabled = true; // Se deshabilita Agregar
-
         btnReset.addEventListener("click", function () { //Si se hace click, se habilita Agregar
             btnAgregate.disabled = false;
         });
-    
+
     }
 
-    showClient() {
-        cleanHTML();
+    cleanHTML() { //Limpia el DOM creado para que no haya conflictos en el agregado de nuevos clientes
+        const divClientes = document.querySelector('.div-clientes');
+        while (divClientes.firstChild) {
+            divClientes.removeChild(divClientes.firstChild);
+        }
+    }
 
-        const tableClients = document.getElementById('table-clients').getElementsByTagName('tbody')[0];
+    showClient() { //MOSTRAR REGISTROS EN TABLAS
+        registro.cleanHTML(); //Se limpian los elementos del DOM para evitar conflictos
+
+        const tableClients = document.getElementById('table-clients').getElementsByTagName('tbody')[0]; //linea donde se insertan las filas
         tableClients.innerHTML = '' //Limpia la tabla antes de agregar una fila
 
-        this.listaClientes.forEach(cliente => {
-            const fila = document.createElement('tr');
+        this.listaClientes.forEach(cliente => { //Recorre la lista de clientes para que se agreguen
+            const fila = document.createElement('tr'); //se crea una nueva fila
 
-            const celdas = [
+            const celdas = [ //se crea un array de celdas para lo que se muestre en cada registro
                 cliente.index,
                 cliente.nombre,
                 cliente.apellido,
@@ -203,13 +213,13 @@ class RegistroCliente {
                 <button class="btn-eliminar" onclick="registro.eliminateClient(${cliente.index})">Eliminar</button>`
             ];
 
-            celdas.forEach(valor => {
-                const celda = document.createElement('td');
-                celda.innerHTML = valor;
-                fila.appendChild(celda);
+            celdas.forEach(valor => { //se itera el array de celdas 
+                const celda = document.createElement('td'); //se crean elementos para celda
+                celda.innerHTML = valor; //se añaden los elementos a cada celda
+                fila.appendChild(celda); //cada celda se añade a una fila
             });
 
-            tableClients.appendChild(fila);
+            tableClients.appendChild(fila); //cada fila se añade como un registro
         });
 
     }
@@ -222,38 +232,35 @@ function validarForm(e) { //AGREGAR ELIMINAR O EDITAR
     e.preventDefault(); //prevenir conflictos
 
     //VALIDACIONES AQUI VALIDAS TODOS LOS CAMPOS DEL DOM, LOS BOTONES NO CREO QUE HAGA FALTA
-    if (inputPlaca.value === '') {
-        alert('Todos los campos son obligatorios');
-        return;
-    }
+    const valuePlaca = inputPlaca.value !== '';
 
-    //EDITAR
-    if (registro.editando) {
-        registro.editClient(Cliente.editFromForm());
-        registro.editando = false;
-        inputFormulario.querySelector('button[type="submit"]').textContent = 'Agregar';
-    //AGREGAR    
-    } else { 
-        registro.agregateClient(Cliente.obtainFromForm());
-    }
+    valuePlaca ? null : alert('Todos los campos son obligatorios');
+    //Se añade o se edita
+    registro.editando ? (
+        registro.editClient(Cliente.editFromForm()), //carga el formulario para Editar
+        registro.editando = false,
+        //Se cambia el texto del boton a Agregar para evitar conflictos con Actualizar
+        inputFormulario.querySelector('button[type="submit"]').textContent = 'Agregar'
+    ) : (registro.agregateClient(Cliente.obtainFromForm()),
+        inputPlaca.value = '',
+        inputYear.value = '',
+        inputMarca.value = '',
+        inputModelo.value = '',
+        inputColor.value = "#000000",
+        inputNombre.value = '',
+        inputApellido.value = '',
+        inputCedula.value = '',
+        inputTelefono.value = '',
+        inputDireccion.value = '',
+        inputNombre_prop.value = '',
+        inputApellido_prop.value = '',
+        inputURL.value = '',
+        etImagen.src = 'https://e7.pngegg.com/pngimages/623/754/png-clipart-sports-car-automotive-design-luxury-vehicle-cartoon-luxury-car-cartoon-character-compact-car.png',
+        //LIMPIAR CAMPOS
+        cleanObject() //limpiar objeto
+    );//carga el formulario para Agregar
 
     registro.showClient();
-    //LIMPIAR CAMPOS
-    inputPlaca.value = '';
-    inputYear.value = '';
-    inputMarca.value = '';
-    inputModelo.value = '';
-    inputColor.value = "#000000";
-    inputNombre.value = '';
-    inputApellido.value = '';
-    inputCedula.value = '';
-    inputTelefono.value = '';
-    inputDireccion.value = '';
-    inputNombre_prop.value = '';
-    inputApellido_prop.value = '';
-    inputURL.value = '';
-    etImagen.src = 'https://e7.pngegg.com/pngimages/623/754/png-clipart-sports-car-automotive-design-luxury-vehicle-cartoon-luxury-car-cartoon-character-compact-car.png';
-    cleanObject(); //limpiar objeto
 }
 
 function cleanObject() { //Usado para limpiar el objeto
@@ -272,11 +279,4 @@ function cleanObject() { //Usado para limpiar el objeto
     prop_apellido = '';
     image = '';
     url = '';
-}
-
-function cleanHTML() { //Limpia el DOM creado para que no haya conflictos en el agregado de nuevos clientes
-    const divClientes = document.querySelector('.div-clientes');
-    while (divClientes.firstChild) {
-        divClientes.removeChild(divClientes.firstChild);
-    }
 }
