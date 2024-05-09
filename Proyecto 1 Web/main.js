@@ -240,45 +240,73 @@ function validarForm(e) { //AGREGAR ELIMINAR O EDITAR
 
     //VALIDACIONES AQUI VALIDAS TODOS LOS CAMPOS DEL DOM, LOS BOTONES NO CREO QUE HAGA FALTA
     const valuePlaca = inputPlaca.value !== '';
+    const formatoPlaca = /^[a-zA-Z0-9]{1,8}$/;
+    const formatoURL = /^https:\/\//;
+    const valueDireccion = inputDireccion.value !== '';
     const soloTexto = /^[A-Za-z\s]+$/;
     const telefonoValido = /^0\d{3}-\d{7}$/;
-    const añovehiculo = parseInt(inputYear.value);
+    const añoVehiculo = parseInt(inputYear.value);
+    const cedula = parseInt(inputCedula.value);
+    const seleccionMarca = inputMarca.value !== '';
+    const seleccionModelo = inputModelo.value !== '';
 
-    soloTexto.test(inputNombre.value) ? null : alert('Solo debe ingresar letras para nombre');
-    telefonoValido.test(inputTelefono.value) ? null : alert("Solo debe ser numeros telefonicos con formato correcto");
-    (isNaN(añovehiculo) || añovehiculo <= 0) ? null : alert('Introduce una fecha correcta');
-
-    valuePlaca ? null : alert('Todos los campos son obligatorios');
+    // valuePlaca ? null : alert('Todos los campos son obligatorios');
     
-
+    (valuePlaca && formatoPlaca.test(inputPlaca.value) && !isNaN(añoVehiculo) && ((añoVehiculo > 0) && (añoVehiculo <= 2024)) && soloTexto.test(inputNombre.value) && soloTexto.test(inputApellido.value) && !isNaN(cedula) && ((cedula > 0) && (cedula <= 40000000)) && telefonoValido.test(inputTelefono.value) && valueDireccion && soloTexto.test(inputNombre_prop.value) && soloTexto.test(inputApellido_prop.value) && formatoURL.test(inputURL.value) && (seleccionMarca || seleccionModelo)) ? (
+        // Se añade o edita
+        registro.editando ? (
+            registro.editClient(Cliente.editFromForm()), // carga formulario para editar
+            registro.editando = false,
+            //Se cambia el texto del boton a Agregar para evitar conflictos con Actualizar
+            inputFormulario.querySelector('button[type="submit"]').textContent = 'Agregar'
+            ) : (registro.agregateClient(Cliente.obtainFromForm()),
+                inputPlaca.value = '',
+                inputYear.value = '',
+                inputMarca.value = '',
+                inputModelo.value = '',
+                inputColor.value = "#000000",
+                inputNombre.value = '',
+                inputApellido.value = '',
+                inputCedula.value = '',
+                inputTelefono.value = '',
+                inputDireccion.value = '',
+                inputNombre_prop.value = '',
+                inputApellido_prop.value = '',
+                inputURL.value = '',
+                etImagen.src = 'https://e7.pngegg.com/pngimages/623/754/png-clipart-sports-car-automotive-design-luxury-vehicle-cartoon-luxury-car-cartoon-character-compact-car.png',
+                //LIMPIAR CAMPOS
+                cleanObject() //limpiar objeto
+            ), // Carga el formulario para agregar
+        registro.showClient()
+        ) : alert('Uno o mas campos son incorrectos');
 
 
     //Se añade o se edita
-    registro.editando ? (
-        registro.editClient(Cliente.editFromForm()), //carga el formulario para Editar
-        registro.editando = false,
-        //Se cambia el texto del boton a Agregar para evitar conflictos con Actualizar
-        inputFormulario.querySelector('button[type="submit"]').textContent = 'Agregar'
-    ) : (registro.agregateClient(Cliente.obtainFromForm()),
-        inputPlaca.value = '',
-        inputYear.value = '',
-        inputMarca.value = '',
-        inputModelo.value = '',
-        inputColor.value = "#000000",
-        inputNombre.value = '',
-        inputApellido.value = '',
-        inputCedula.value = '',
-        inputTelefono.value = '',
-        inputDireccion.value = '',
-        inputNombre_prop.value = '',
-        inputApellido_prop.value = '',
-        inputURL.value = '',
-        etImagen.src = 'https://e7.pngegg.com/pngimages/623/754/png-clipart-sports-car-automotive-design-luxury-vehicle-cartoon-luxury-car-cartoon-character-compact-car.png',
-        //LIMPIAR CAMPOS
-        cleanObject() //limpiar objeto
-    );//carga el formulario para Agregar
+    // registro.editando ? (
+    //     registro.editClient(Cliente.editFromForm()), //carga el formulario para Editar
+    //     registro.editando = false,
+    //     //Se cambia el texto del boton a Agregar para evitar conflictos con Actualizar
+    //     inputFormulario.querySelector('button[type="submit"]').textContent = 'Agregar'
+    // ) : (registro.agregateClient(Cliente.obtainFromForm()),
+    //     inputPlaca.value = '',
+    //     inputYear.value = '',
+    //     inputMarca.value = '',
+    //     inputModelo.value = '',
+    //     inputColor.value = "#000000",
+    //     inputNombre.value = '',
+    //     inputApellido.value = '',
+    //     inputCedula.value = '',
+    //     inputTelefono.value = '',
+    //     inputDireccion.value = '',
+    //     inputNombre_prop.value = '',
+    //     inputApellido_prop.value = '',
+    //     inputURL.value = '',
+    //     etImagen.src = 'https://e7.pngegg.com/pngimages/623/754/png-clipart-sports-car-automotive-design-luxury-vehicle-cartoon-luxury-car-cartoon-character-compact-car.png',
+    //     //LIMPIAR CAMPOS
+    //     cleanObject() //limpiar objeto
+    // );//carga el formulario para Agregar
 
-    registro.showClient();
+    // registro.showClient();
 
 }
 
