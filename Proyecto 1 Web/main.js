@@ -188,9 +188,7 @@ class RegistroCliente {
 
     cleanHTML() { //Limpia el DOM creado para que no haya conflictos en el agregado de nuevos clientes
         const divClientes = document.querySelector('.div-clientes');
-        while (divClientes.firstChild) {
-            divClientes.removeChild(divClientes.firstChild);
-        }
+        divClientes.innerHTML = '';
     }
 
     showClient() { //MOSTRAR REGISTROS EN TABLAS
