@@ -125,7 +125,8 @@ class RegistroCliente {
 
     chargeSee(index) {
         //se busca el cliente por el indice
-        const cliente = this.listaClientes.find(cliente => cliente.index === index);
+        parseInt(index)
+        const cliente = this.listaClientes.find(cliente => parseInt(cliente.index) === index);
         //se desglosa el el objeto para asignarle valores al formulario
         inputIndex.value = cliente.index;
         inputPlaca.value = cliente.placa;
@@ -148,9 +149,10 @@ class RegistroCliente {
         //cabe destacar que la variable controladora no es llamada, ya que solo queremos ver el resgitro sin modificarlo
     }
 
-    charge(index) {
+    chargeEdit(index) {
         //se busca el cliente por el indice
-        const cliente = this.listaClientes.find(cliente => cliente.index === index);
+        parseInt(index)
+        const cliente = this.listaClientes.find(cliente => parseInt(cliente.index) === index);
         //se desglosa el el objeto para asignarle valores al formulario
         inputIndex.value = cliente.index;
         inputPlaca.value = cliente.placa;
@@ -207,12 +209,13 @@ class RegistroCliente {
                 cliente.id,
                 cliente.year,
                 cliente.placa,
+                `<div style="height: 50px; width: 50px ; background-color: ${cliente.color};"></div>`,
                 `<img src="${cliente.url}" height="50" widdth="50">`,
                 `<button class="btn-ver" onclick="registro.seeClient(${cliente.index})">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"  fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle>
                     </svg>
                 </button>
-                <button class="btn-editar" onclick="registro.charge(${cliente.index})">
+                <button class="btn-editar" onclick="registro.chargeEdit(${cliente.index})">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.66V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5.34"></path><polygon points="18 2 22 6 12 16 8 16 8 12 18 2"></polygon></svg>
                 </button>
                 <button class="btn-eliminar" onclick="registro.eliminateClient(${cliente.index})">
@@ -223,6 +226,8 @@ class RegistroCliente {
             celdas.forEach(valor => { //se itera el array de celdas 
                 const celda = document.createElement('td'); //se crean elementos para celda
                 celda.innerHTML = valor; //se añaden los elementos a cada celda
+                celda.style.textAlign = "center";
+                celda.style.verticalAlign = "middle";
                 fila.appendChild(celda); //cada celda se añade a una fila
             });
 
@@ -250,8 +255,6 @@ function validarForm(e) { //AGREGAR ELIMINAR O EDITAR
     const seleccionMarca = inputMarca.value !== '';
     const seleccionModelo = inputModelo.value !== '';
 
-    // valuePlaca ? null : alert('Todos los campos son obligatorios');
-    
     (valuePlaca && formatoPlaca.test(inputPlaca.value) && !isNaN(añoVehiculo) && ((añoVehiculo > 0) && (añoVehiculo <= 2024)) && soloTexto.test(inputNombre.value) && soloTexto.test(inputApellido.value) && !isNaN(cedula) && ((cedula > 0) && (cedula <= 40000000)) && telefonoValido.test(inputTelefono.value) && valueDireccion && soloTexto.test(inputNombre_prop.value) && soloTexto.test(inputApellido_prop.value) && formatoURL.test(inputURL.value) && (seleccionMarca || seleccionModelo)) ? (
         // Se añade o edita
         registro.editando ? (
@@ -273,41 +276,12 @@ function validarForm(e) { //AGREGAR ELIMINAR O EDITAR
                 inputNombre_prop.value = '',
                 inputApellido_prop.value = '',
                 inputURL.value = '',
-                etImagen.src = 'https://e7.pngegg.com/pngimages/623/754/png-clipart-sports-car-automotive-design-luxury-vehicle-cartoon-luxury-car-cartoon-character-compact-car.png',
+                etImagen.src = 'https://d1yjjnpx0p53s8.cloudfront.net/styles/logo-original-577x577/s3/102012/logoujap.png?itok=--szBodC',
                 //LIMPIAR CAMPOS
                 cleanObject() //limpiar objeto
-            ), // Carga el formulario para agregar
+            ), // Carga el formulario para Agregar
         registro.showClient()
         ) : alert('Uno o mas campos son incorrectos');
-
-
-    //Se añade o se edita
-    // registro.editando ? (
-    //     registro.editClient(Cliente.editFromForm()), //carga el formulario para Editar
-    //     registro.editando = false,
-    //     //Se cambia el texto del boton a Agregar para evitar conflictos con Actualizar
-    //     inputFormulario.querySelector('button[type="submit"]').textContent = 'Agregar'
-    // ) : (registro.agregateClient(Cliente.obtainFromForm()),
-    //     inputPlaca.value = '',
-    //     inputYear.value = '',
-    //     inputMarca.value = '',
-    //     inputModelo.value = '',
-    //     inputColor.value = "#000000",
-    //     inputNombre.value = '',
-    //     inputApellido.value = '',
-    //     inputCedula.value = '',
-    //     inputTelefono.value = '',
-    //     inputDireccion.value = '',
-    //     inputNombre_prop.value = '',
-    //     inputApellido_prop.value = '',
-    //     inputURL.value = '',
-    //     etImagen.src = 'https://e7.pngegg.com/pngimages/623/754/png-clipart-sports-car-automotive-design-luxury-vehicle-cartoon-luxury-car-cartoon-character-compact-car.png',
-    //     //LIMPIAR CAMPOS
-    //     cleanObject() //limpiar objeto
-    // );//carga el formulario para Agregar
-
-    // registro.showClient();
-
 }
 
 function cleanObject() { //Usado para limpiar el objeto

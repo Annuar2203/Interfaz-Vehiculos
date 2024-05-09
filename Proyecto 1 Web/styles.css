@@ -18,8 +18,6 @@ body {
     text-align: center; /* Centra el texto */
 }
 
-
-
 .content {
     display: flex;
     justify-content: center;
@@ -81,7 +79,6 @@ body {
     border-radius: 5px;
     cursor: pointer;
 }
-
 
 /* Estilos para la tabla de registros */
 #table-clients {
